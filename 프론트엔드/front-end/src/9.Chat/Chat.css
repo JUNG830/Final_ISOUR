@@ -107,6 +107,7 @@
   display: inline-flex;
   flex-direction: column;
   padding-bottom: 2rem;
+  width: 100%;
 }
 
 .no_conv {
@@ -125,12 +126,13 @@ Enter message
   width: 90%;
   align-items: center;
   justify-content: flex-end;
+  position: relative;
 }
 
-/* .Send {
+.Send {
   position: sticky;
   bottom: 3rem;
-} */
+}
 
 .message_form input {
   width: 400px;
