@@ -1,15 +1,16 @@
-/* :root {
+:root {
   --color-1: #242526;
   --color-2: white;
   --color-3: #0084ff;
   --color-4: grey;
   --color-5: #eb4034;
   --color-6: #333;
-} */
+}
 
 .Chat-middle {
-  display: flex;
   margin-top: 100px;
+  display: flex;
+  flex-direction: column;
 }
 
 .home_container {
@@ -18,16 +19,17 @@
   grid-template-columns: 1fr 3fr;
   overflow: hidden;
   width: 900px;
-  height: 800px;
+  height: 700px;
   margin: 100px auto;
-  padding: 0;
-  background-color: rgb(211, 211, 211);
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(177, 177, 177, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgba(255, 255, 255, 0.788);
 }
 
 /* Register */
 .btn {
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 25px;
   outline: none;
   border: 1px solid var(--color-4);
   background: var(--color-1);
@@ -92,72 +94,129 @@
 메세지 창
 */
 .messages_container {
-  position: relative;
-}
-.messages_user {
+  /* display: flex;
+  flex-direction: column; */
+  /* flex: 1; */
   padding: 10px;
-  text-align: center;
-  border-bottom: 1px solid var(--color-6);
+  /* position: relative; */
+  overflow-y: scroll;
 }
+
+.messages-box {
+  /* position: relative; */
+  display: inline-flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+
 .no_conv {
   font-size: 20px;
   color: black;
   text-align: center;
 }
+
+/* 
+Enter message
+*/
 .message_form {
-  position: absolute;
-  bottom: 0;
-  left: 20%;
-  width: 100%;
-  height: 30px;
+  /* position: absolute; */
+  /* bottom: 1rem; */
   display: flex;
+  width: 90%;
   align-items: center;
+  justify-content: flex-end;
 }
+
+/* .Send {
+  position: sticky;
+  bottom: 3rem;
+} */
+
 .message_form input {
-  width: 600px;
-  padding: 10px;
-  margin-bottom: 30px;
-  border-radius: 5px;
-  border: 1px solid black;
+  width: 400px;
+  height: 35px;
+  padding-left: 20px;
+  border-radius: 15px;
+  border: 0px;
+  box-shadow: 0 4px 8px 0 rgba(177, 177, 177, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  outline: none;
+  margin-right: 1rem;
 }
-.message_form .btn {
-  margin: 0px 30px 30px
+
+.message {
+  width: 100%;
+  padding-bottom: 1rem;
 }
-.messages {
-  height: calc(100vh - 200px);
-  overflow-y: auto;
-  border-bottom: 1px solid var(--color-6);
-}
+
+
+
+/* 
+메세지 보낸 사람이 친구일 경우
+*/
 .message_wrapper {
-  margin-top: 5px;
+  /* margin-top: 5px; */
   padding: 0px 5px;
+  list-style: none;
 }
-.message_wrapper img {
+/* .message_wrapper img {
   width: 100%;
   border-radius: 5px;
+} */
+
+/* 
+채팅 말풍선
+*/
+.message_wrapper li {
+  padding: 10px 20px;
+  max-width: 70%;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-.message_wrapper p {
-  padding: 10px;
-  display: inline-block;
-  max-width: 50%;
-  text-align: left;
-  border-radius: 5px;
-}
-.message_wrapper small {
-  display: inline-block;
-  margin-top: 15px;
-  opacity: 0.8;
-}
-.message_wrapper.own {
+
+/* 
+시간
+*/
+
+/* 
+내가 보낸 채팅
+*/
+/* .message_wrapper .own {
   text-align: right;
-}
+} */
+/* 
+내가 보낸 채팅
+*/
 .me {
-  background: beige;
-  color: black;
+  background: rgb(255, 215, 142);
+  float: right;
+  /* margin: 10px; */
 }
+
+.me > small {
+  position: relative;
+  left: calc(100% - 40px);
+  display: inline-block;
+  top: 30px;
+  color: gray;
+}
+
+/* 
+친구가 보낸 채팅
+*/
 .friend {
-  background: white;
-  border : 1px solid black;
+  background: rgb(0, 182, 228);
+  float: left;
+  /* margin: 10px; */
+}
+
+.friend > small {
+  position: relative;
+  right: 10px;
+  display: inline-block;
+  top: 30px;
+  color: gray;
 }
 
 .selected_user {
