@@ -106,7 +106,7 @@ const GuestBook = () => {
     return (
         <div className="chat-Container">
             <div className="chat-box1">
-            <input className="gsend"  type="text"  value={content} onChange={onChangeText}/>
+            <input className="gsend" type="text" onChange={onChangeText}/>
             <button className ="gbtn"  onClick={onClickBTN}>보내기</button>
                 <div className="minibox">
                 {chatInfo.reverse().map((chat) => (
