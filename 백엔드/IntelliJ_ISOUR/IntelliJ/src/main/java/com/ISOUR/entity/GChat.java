@@ -13,7 +13,7 @@ public class GChat {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long chatNum;
     private String content;
-//    private String id;
+    private String face;
     private String nickname;
     private LocalDateTime chatTime;
 }

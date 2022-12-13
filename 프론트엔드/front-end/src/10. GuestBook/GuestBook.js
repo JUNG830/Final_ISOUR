@@ -17,13 +17,13 @@ const GuestBook = () => {
     const [id, setId] = useState('');
     const cookies = new Cookies();
     const navigate = useNavigate();
-    const [face, setFace] = useState(null);
+    const [face, setFace] = useState('');
 
     const chatContent = /^\w{1,40}$/;
     const kakaoId_num = window.sessionStorage.getItem("kakaoId_num");
     const localId = cookies.get('rememberId');
     const name = cookies.get('nickname');
-
+    const isface = cookies.get('face');
   
     useEffect(() => {
         // if (localId === undefined) navigate("/login");
@@ -53,19 +53,14 @@ const GuestBook = () => {
 
     const onClickBTN = async (data) => {
         data.preventDefault();
-        console.log("텍스트 : " + content);
-        console.log("isText" + isText);
-
         try {
             if( isText === true ) {
-                
-                const res = await TeamAPI.memberChat(content,nickname);
+                const res = await TeamAPI.memberChat(content,nickname,face);
                 if(res.data === true) {
-                    
                     setContent('');
                     setNickname(name);
+                    setFace(face);
                     window.location.reload()
-                    // setId(localId);
                 }else{
                     alert("실패")
                 }
@@ -78,14 +73,8 @@ const GuestBook = () => {
             alert("오류")
         }
     }
-    const chatText = [
-        {
-        content: ""
-        }
-    ]
+
     useEffect(() => {
-        // if (localId === undefined) navigate("/login");
-        //로그인 안될시 로그인 화면으로 이동.
         
         const chatData = async (e) => {
 
@@ -112,7 +101,7 @@ const GuestBook = () => {
                 {chatInfo.reverse().map((chat) => (
                     <div className="gchat" key={chat.id}>
                             <div className="gchatNum">
-                            <img src={face} alt="" style={{ marginTop: "1px",marginLeft:"auto",marginRight:"auto",width: "30px", height: "30px", border:"1px solid" ,borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
+                            <img src={chat.face} alt="" style={{ marginTop: "1px",marginLeft:"auto",marginRight:"auto",width: "30px", height: "30px", border:"1px solid" ,borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
                             {chat.nickname}
                             </div>
                             <div className="gcontent">{chat.content}
