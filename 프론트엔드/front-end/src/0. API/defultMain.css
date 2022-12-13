@@ -3,9 +3,8 @@
     width: 1180px;
     margin: 0 auto;
     padding: 0;
-    font-family: "Jalnan";
     background-color: rgba(0, 0, 0, 0.04);
-    height: 100vh;
+    height: 100%;
 }
 .Middle-Container {
     display: flex;

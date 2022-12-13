@@ -6,6 +6,8 @@ import { ChangePwdModal } from '../99. Modal/ChangePwdModal';
 import { UnregisterModal } from '../99. Modal/UnregisterModal';
 import '../5. MyPage/MyPage.css';
 import '../0. API/defultMain.css';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 // 파이어베이스 설치 ☞ yarn add firebase
 import { storage } from '../firebase'
@@ -114,21 +116,39 @@ const MyPage = () => {
 
   // 프사 변경 및 미리보기
   const onChangeFace = (e) => {
+<<<<<<< HEAD
     const preview = URL.createObjectURL(e.target.files[0]);
     setUrl(preview);
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
       setIsSetImage(true);
 
+=======
+    const temp_face = e.target.files[0];
+    const preview = URL.createObjectURL(temp_face);
+    console.log("==============================");
+    console.log("preview : " + preview);
+    console.log(temp_face);
+    console.log("==============================");
+    setUrl(temp_face);
+    if(temp_face) {
+      setImage(temp_face);
+>>>>>>> b1064b7f479a366b4de486646062c6ea592f3e55
     }
-  };
 
+<<<<<<< HEAD
   // 프사 저장 버튼
   const onSaveFace = async () => {
     const imageRef = ref(storage, localId);
 
     uploadBytes(imageRef, image).then(() => {
       getDownloadURL(imageRef).then(async (url) => {
+=======
+    const imageRef = ref(storage, `profile/${localId}`);
+
+    uploadBytes(imageRef, temp_face).then(() => {
+      getDownloadURL(imageRef).then(async(url) => {
+>>>>>>> b1064b7f479a366b4de486646062c6ea592f3e55
         console.log("\nURL : " + url);
         setUrl(url);
 
@@ -162,8 +182,14 @@ const MyPage = () => {
   };
 
   // 프사 삭제 버튼
+<<<<<<< HEAD
   const onDeleteFace = async () => {
     if (url === null) alert("삭제할 프사가 없습니다.")
+=======
+  const onDeleteFace = async() => {
+    console.log("\n>> onDeleteFace 실행");
+    if(url === null) alert("삭제할 프사가 없습니다.")
+>>>>>>> b1064b7f479a366b4de486646062c6ea592f3e55
     else {
       const temp_url = null;
       setUrl(temp_url);
@@ -462,6 +488,7 @@ const MyPage = () => {
       console.log("\n>> 탈퇴하기를 취소합니다.");
     }
   };
+<<<<<<< HEAD
 
   return (
     <>
@@ -719,6 +746,219 @@ const MyPage = () => {
 
 
 
+=======
+  
+  return(
+    <div className='Container'>
+      <div className='Mypage-Container'>
+        <div className='Mypage-box'>
+          <ChangePwdModal open={changePwdModalOpen} close={closeChangePwdModal} getPwd={getPwd} onSavePwd={onSavePwd}></ChangePwdModal>
+          <UnregisterModal open={unregisterModalOpen} close={closeUnregisterModal} id={id} getInputPwd={getInputPwd} onDeleteMember={onDeleteMember}></UnregisterModal>
+          <div className='MyPage-header'>
+            <h1>마이페이지</h1>
+          </div>
+          <div className="profile_container">
+            <div className="img_container">
+              <img src={url || face} alt="avatar" />
+              <div className="overlay">
+                <label htmlFor="photo">
+                  <CameraAltIcon style={{fontSize: "2rem", cursor: "pointer"}}/>
+                </label>
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  style={{ display: "none" }} 
+                  id="photo" 
+                  onChange={onChangeFace} 
+                  />
+                {url ? <DeleteForeverIcon style={{fontSize: "2rem", cursor: "pointer"}} onClick={onDeleteFace}/> : null}
+              </div>
+            </div>
+          </div>
+
+        {/* MyPage-Table 영역 */}
+        <table action="" className="MyPage-Table">
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>이름</span>
+            </div>
+            <input className='Form-input1' type="text" value ={name} disabled/>
+            <div className='s'/>
+          </tr>
+
+
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>아이디</span>
+            </div>
+            <div>
+              <input className='Form-input2' type="text" value ={id} disabled/>
+            </div>
+            <div className='s'></div>
+          </tr>
+
+
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>생년월일</span>
+            </div>
+            <div>
+              <input className='Form-input3' type="text" value ={birth} disabled/>
+            </div>
+            <div className='s'></div>
+          </tr>
+
+
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>성별</span>
+            </div>
+            <input className='Form-input4' type="text" value ={gender} disabled/>
+            <div className='s'/>
+          </tr>
+
+
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>MBTI</span>
+            </div>
+            {mbti ? <input className='MyPage-MBTI' type="text" value ={mbti} />
+          : <button className='Mypage-examine' onClick={onClickTestStart}>검사하기</button>}
+            <div className='s'/>
+          </tr>
+
+          {/* 비밀번호 */}
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>비밀번호</span>
+            </div>
+            <input className='Form-input5' type="password" value ={pwd} />
+            <button className="MyPage-Modify-Btn" onClick={openChangePwdModal}>수정</button>
+          </tr>
+
+
+          {/* 닉네임 */}
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>닉네임</span>
+            </div>
+            {!isChangeNickname ?
+            <>
+              <input className='Form-input6' type="text" value ={nickname} />
+              <button className="MyPage-Modify-Btn" onClick={e => setIsChangeNickname(true)}>수정</button>
+            </>
+            :
+            <>
+              <input className='Form-input6-2' type="text" onChange={onChangeNickname}/>
+              <div className='input6-btn'>
+              {isCheckedNickname&&
+                <button className='input6-btn-select' onClick={onClickNicknameCheck}>중복확인</button>}
+              {isNicknamecheck&&
+                <button className='input6-btn-keep' onClick={onSaveNickname}>저장</button>}
+              {isNicknamecheck&&
+                <button className='input6-btn-keep' onClick={cancelNickname}>취소</button>}
+              </div>
+            </>
+            }
+          </tr>
+
+
+          {/* 자기소개 */}
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>자기소개</span>
+            </div>
+            {!isChangeIntroduce ?
+            <>
+              <input className='Form-input7' type="text" value ={introduce} />
+              <button className="MyPage-Modify-Btn" onClick={e => setIsChangeIntroduce(true)}>수정</button>
+            </>
+            :
+            <>
+              <input className='Form-input7-2' type="text" onChange={onChangeIntroduce}/>
+              <button className='input7-btn-keep' onClick={onSaveIntroduce}>저장</button>
+              <button className='input7-btn-keep' onClick={cancelIntroduce}>취소</button>
+            </>
+            }
+          </tr>
+
+
+          {/* 이메일 */}
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>이메일</span>
+            </div>
+            {!isChangeEmail ?
+            <>
+              <input className='Form-input8' type="mail" value ={email} />
+              <button className="MyPage-Modify-Btn" onClick={e => setIsChangeEmail(true)}>수정</button>
+            </>
+            :
+            <>
+              <input className='Form-input8-2' type="mail" onChange={onChangeEmail}/>
+              <button className='input8-btn-keep' onClick={onSaveEmail}>저장</button>
+              <button className='input8-btn-keep' onClick={cancelEmail}>취소</button>
+            </>
+            }
+          </tr>
+
+
+          {/* 주소 */}
+          {isChangeAddress ?
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>주소</span>
+            </div>
+            <select className='Select-Sido' onChange={onChangeRegion1}>
+              <option disabled selected>시도선택</option>
+              {sido.map((e) => (
+                <option key={e.sido} value={e.codeNm}>
+                  {e.codeNm}
+                </option>
+              ))}
+            </select>
+            <tr className="Form-item">
+              <select className='Select-SiGuGun' onChange={onChangeRegion2}>
+              <option disabled selected>시/구/군선택</option>
+              {sigugun
+                .filter((e) => e.sido === keySido)
+                .map((e) => (
+                  <option key={e.sigugun} value={e.codeNm}>
+                    {e.codeNm}
+                  </option>
+                ))}
+              </select>
+              <button className='input10-btn' onClick={onSaveAddress}>저장</button>
+              <button className='input10-btn' onClick={e => setIsChangeAddress(false)}>취소</button>
+            </tr>
+          </tr>
+          : 
+          <>
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <span>주소</span>
+            </div>
+            <input className='Form-input9' type="text" value ={region1} />
+            <div className='s'/>
+          </tr>
+          <tr className="Form-item">
+            <div className="Form-Name">
+              <div></div>
+            </div>
+            <input className='Form-input10' type="text" value ={region2} />
+            <button className='input10-btn' onClick={e => setIsChangeAddress(true)}>수정</button>
+          </tr>
+          </>
+          }
+        </table>
+        <div className="Mypage-leave">
+          <button className='Mypage-leave-btn' onClick={openUnregisterModal}>탈퇴하기</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  );
+>>>>>>> b1064b7f479a366b4de486646062c6ea592f3e55
 }
 
 export default MyPage;

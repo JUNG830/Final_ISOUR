@@ -6,12 +6,12 @@ import Cookies from 'universal-cookie';
 import "./Chat.css";
 
 const User = ({ user1 , user, selectUser, chat }) => {
-  console.log("\n>> User 방문");
-  console.log("==== Home 에서 받아오는 props ===");
-  console.log("user1(나) : " + user1);
-  console.log("user(상대방) : ", user); // [object Object] : users를 map 으로 돌면서 하나씩
-  // console.log("selectUser : ", selectUser); // 함수 그 자체
-  console.log("chat : ", chat); // 없음
+  // console.log("\n>> User 방문");
+  // console.log("==== Home 에서 받아오는 props ===");
+  // console.log("user1(나) : " + user1);
+  // console.log("user(상대방) : ", user); // [object Object] : users를 map 으로 돌면서 하나씩
+  // // console.log("selectUser : ", selectUser); // 함수 그 자체
+  // console.log("chat : ", chat); // 없음
   
   
   const cookies = new Cookies();

@@ -44,25 +44,29 @@
      border-radius: 10px;
   }
   .gchatNum {
-    width: 10rem;
+    width: 11rem;
     text-align: left;
     float: left;
-    margin-left: 0.3rem
+    margin-left: 0.3rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.8rem;
   }
  
   .gcontent {
    width: 85%;
    margin-left:  7rem;
    margin-right: auto;
-   margin-top: 0.5rem;
-   text-align: left;
+   margin-top: 1rem;
+  text-align: left;
    word-break:break-all; 
    white-space: normal;
   }
   .gchattime{
     float: right;
+    margin-top: 0.2rem;
     font-size: 0.5rem;
   } 
+
   .gchat {
     float: left;
     font-family: "Jalnan";
@@ -75,6 +79,7 @@
     border-bottom: 1px solid gray;
  }
  .minibox {
+    font-size: 1.1rem;
     margin-top: 1rem;
     border: 1px solid;
     margin-left: auto;
@@ -82,7 +87,7 @@
     align-items: center;
     height: 700px;
     width: 80%;
-    overflow: scroll;
+    overflow-y: auto;
     font-family: "Jalnan";
     border-radius: 10px;
     background-color: rgb(178, 199, 217);

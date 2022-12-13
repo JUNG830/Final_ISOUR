@@ -4,9 +4,7 @@ import Cookies from 'universal-cookie';
 import { useNavigate  } from "react-router-dom";
 import './GuestBook.css';
 import Moment from "react-moment";
-import { storage } from '../firebase'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { render } from "@testing-library/react";
+
 
 
 const GuestBook = () => {
@@ -14,16 +12,14 @@ const GuestBook = () => {
     const [content, setContent] = useState('');
     const [chatInfo,setChatinfo] = useState([]);
     const [isText, setIsText] = useState('');
-    const [id, setId] = useState('');
     const cookies = new Cookies();
     const navigate = useNavigate();
     const [face, setFace] = useState('');
 
-    const chatContent = /^\w{1,40}$/;
     const kakaoId_num = window.sessionStorage.getItem("kakaoId_num");
     const localId = cookies.get('rememberId');
     const name = cookies.get('nickname');
-    const isface = cookies.get('face');
+
   
     useEffect(() => {
         // if (localId === undefined) navigate("/login");
@@ -79,29 +75,33 @@ const GuestBook = () => {
         const chatData = async (e) => {
 
           let sentence = content;
+         
           try {
+            
             const response = await TeamAPI.chatInfo(sentence); // 원래는 전체 회원 조회용
+           
+            if (response.status === 200) {
             setChatinfo(response.data);
             
-            
+        }
           } catch (e) {
           }
         };
         chatData();
-       
+ 
         }, [content]);
     
     
     return (
         <div className="chat-Container">
             <div className="chat-box1">
-            <input className="gsend" type="text" onChange={onChangeText}/>
+            <input className="gsend" disabled='' type="text" onChange={onChangeText}/>
             <button className ="gbtn"  onClick={onClickBTN}>보내기</button>
                 <div className="minibox">
-                {chatInfo.reverse().map((chat) => (
+                {chatInfo.map((chat) => (
                     <div className="gchat" key={chat.id}>
                             <div className="gchatNum">
-                            <img src={chat.face} alt="" style={{ marginTop: "1px",marginLeft:"auto",marginRight:"auto",width: "30px", height: "30px", border:"1px solid" ,borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
+                            <img src={chat.face} alt="" style={{ marginTop: "1px",marginLeft:"auto",marginRight:"auto",width: "23px", height: "23px", border:"1px solid" ,borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
                             {chat.nickname}
                             </div>
                             <div className="gcontent">{chat.content}
