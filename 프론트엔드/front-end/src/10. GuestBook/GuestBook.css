@@ -82,7 +82,7 @@
     align-items: center;
     height: 700px;
     width: 80%;
-    overflow: scroll;
+    overflow-y: auto;
     font-family: "Jalnan";
     border-radius: 10px;
     background-color: rgb(178, 199, 217);

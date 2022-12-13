@@ -7,6 +7,7 @@ import com.ISOUR.repository.ChatListRepository;
 import com.ISOUR.repository.GChatRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.OrderBy;
@@ -49,7 +50,7 @@ public class GChatService {
         log.warn("★★★★★★★★★전체 회원 조회 서비스★★★★★★★★★");
 
         List<GChatDTO> GChatDTOS = new ArrayList<>();
-        List<GChat> GChatInfoList = GChatRepository.findAll();
+        List<GChat> GChatInfoList = GChatRepository.findAll(Sort.by(Sort.Direction.DESC, "chatNum"));
         for(GChat e : GChatInfoList) {
             GChatDTO GChatDTO = new GChatDTO();
             GChatDTO.setFace(e.getFace());
