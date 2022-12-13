@@ -101,7 +101,7 @@ const GuestBook = () => {
                 {chatInfo.map((chat) => (
                     <div className="gchat" key={chat.id}>
                             <div className="gchatNum">
-                            <img src={chat.face} alt="" style={{ marginTop: "1px",marginLeft:"auto",marginRight:"auto",width: "30px", height: "30px", border:"1px solid" ,borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
+                            <img src={chat.face} alt="" style={{ marginTop: "1px",marginLeft:"auto",marginRight:"auto",width: "23px", height: "23px", border:"1px solid" ,borderRadius: "70%", overflow: "hidden", objectFit: "cover"}}/>
                             {chat.nickname}
                             </div>
                             <div className="gcontent">{chat.content}
