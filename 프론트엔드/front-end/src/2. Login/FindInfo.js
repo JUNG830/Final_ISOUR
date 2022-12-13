@@ -14,7 +14,7 @@ const Find_Container = styled.div`
     position: relative;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 1;
-    margin: 20vh auto;
+    margin: 0 auto;
     height: 400px;
     box-sizing: border-box;
 `
